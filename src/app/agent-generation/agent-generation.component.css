@@ -1,0 +1,18 @@
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h2 {
+    position: relative; 
+    top: 7vh;
+    color: #ff4655;
+    font-size: 3rem;
+}
+
+
+hr {
+    color: white;
+    width: 80vw;
+}
