@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    background-color: #323443;
+    font-family: Tungsten-Bold;
+}
+
+/* '*': globally implements the font familty specified  
+    '!important': overrides all other styles
+*/
+
+@font-face {
+    font-family: Tungsten-Bold;
+    src: url('assets/fonts/Tungsten-Bold.ttf'); 
+}
+
+.Tungsten-Bold {
+    font-family: Tungsten-Bold;
+}

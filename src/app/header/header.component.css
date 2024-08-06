@@ -1,0 +1,67 @@
+.flex-container {
+    margin-top: 2vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    position: absolute;
+    color: #ff4655;
+    font-size: 2rem; 
+    left: 50%; /* moves title's left edge to center of header*/
+    transform: translateX(-50%); /* shifts title left by 50% of its own width, effectively centering the element on the header */
+}
+
+.links {
+    display: flex; /* nested flex-box for a gap between header links */
+    gap: 2rem;
+    font-size: 1.5rem;
+}
+
+.links a {
+    text-decoration: none;
+    color: white;
+
+}
+
+.links a:hover {
+    color: #ff4655;
+}
+
+.links img {
+    margin-right: 0.25rem;
+}
+
+.coffee {
+    margin-right: 3vw; /* must match margin-left of logo */
+}
+
+.logo {
+    margin-right: auto;
+    margin-left: 3vw;
+}
+
+hr {
+    color: white;
+    margin-left: 3vw;
+    margin-right: 3vw;
+}
+
+@media (max-width: 875px) {
+    .flex-container {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .title {    
+        text-align: center;
+        margin-bottom: 10vh;
+    }
+  
+    .links {
+      justify-content: center;
+      gap: 10px;
+      margin-top: 5vh;
+    }
+  }
