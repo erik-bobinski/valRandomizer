@@ -1,8 +1,18 @@
 <div class="flex-container">
     <h2>Agent Select</h2>
     <hr>
-    <img src="assets/images/agentSelectPlaceholder.jpg" class="agent-media">
-    <button class="get-your-agent-button">
+    <div class="video-container" [ngClass]="{'video-loaded': selectedAgent}">
+    <ng-container *ngIf="selectedAgent; else placeholder"> <!--displays content within if selectedAgent exists-->
+        <video #videoPlayer autoplay>
+            <source [src]="selectedAgent.videoUrl" type="video/mp4">
+            Your browser does not support the video tag
+        </video>
+    </ng-container>
+    <ng-template #placeholder>
+        <div class="placeholder"></div>
+    </ng-template>
+    </div>
+    <button class="get-your-agent-button" (click)="getRandomAgent()">
         <img src="assets/images/Get-Your-Agent-Button.png" alt="Get-Your-Agent-Button" aria-hidden="true">
     </button>
 </div>

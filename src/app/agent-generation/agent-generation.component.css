@@ -13,15 +13,28 @@ h2 {
 
 hr {
     color: white;
-    width: 80vw;
+    width: 60vw;
     margin-top: 0;
 }
 
-.agent-media {
+.video-container {
     border: 1px solid white;
     border-radius: 4px;
+    width: 40vw; /* width:height must be 16:9 to match video aspect ratio */
+    height: 22.5vw; /* width:height must be 16:9 to match video aspect ratio */
     margin: 1%;
-    height: 50vh;
+    background-color: #333333;
+}
+
+.placeholder {
+    width: 100%; /* full width of video-container */
+    height: 100%; /* full height of video-container */
+}
+
+.video-container video {
+    width: 100%; /* full width of video-container */
+    height: 100%; /* full height of video-container */
+    border-radius: 4px;
 }
 
 .get-your-agent-button {
