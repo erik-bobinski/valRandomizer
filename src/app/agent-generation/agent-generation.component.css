@@ -20,8 +20,8 @@ hr {
 .video-container {
     border: 1px solid white;
     border-radius: 4px;
-    width: 40vw; /* width:height must be 16:9 to match video aspect ratio */
-    height: 22.5vw; /* width:height must be 16:9 to match video aspect ratio */
+    width: 41.5vw; /* width:height must be 16:9 to match video aspect ratio */
+    height: 23.34vw; /* width:height must be 16:9 to match video aspect ratio */
     margin: 1%;
     background-color: #333333;
 }
@@ -29,6 +29,16 @@ hr {
 .placeholder {
     width: 100%; /* full width of video-container */
     height: 100%; /* full height of video-container */
+    display: flex;
+    color: white;
+    font-size: 2rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.text-red {
+    color: #ff4655;
+    font-style: italic;
 }
 
 .video-container video {
