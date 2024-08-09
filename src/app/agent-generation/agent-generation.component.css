@@ -29,16 +29,8 @@ hr {
 .placeholder {
     width: 100%; /* full width of video-container */
     height: 100%; /* full height of video-container */
-    display: flex;
     color: white;
     font-size: 2rem;
-    align-items: center;
-    justify-content: center;
-}
-
-.text-red {
-    color: #ff4655;
-    font-style: italic;
 }
 
 .video-container video {
