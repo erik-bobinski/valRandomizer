@@ -30,7 +30,11 @@ hr {
     width: 100%; /* full width of video-container */
     height: 100%; /* full height of video-container */
     color: white;
-    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(1vw + 1vh);
+    text-align: center;
 }
 
 .video-container video {

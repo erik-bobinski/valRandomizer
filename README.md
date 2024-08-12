@@ -4,4 +4,4 @@ Randomized agent selection and generation of challenges to complete in-game, des
 
 Built with Angular and OpenAI API.
 
-![image](src/assets/images/AppExample.png)
+![image](src/assets/images/AgentSelectPlaceholder.png)

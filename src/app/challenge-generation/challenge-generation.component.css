@@ -28,10 +28,9 @@ hr {
     justify-content: center;    
     min-height: 15vh;
     width: 41.5vw;
-    font-size: 1.5rem;
+    font-size: calc(1vw + 1vh);
     margin: 1%;
     word-wrap: break-word;
-    
 }
 
 .get-your-challenge-button {
