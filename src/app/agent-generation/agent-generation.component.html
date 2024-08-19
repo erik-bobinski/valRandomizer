@@ -1,19 +1,25 @@
 <div class="flex-container">
-    <h2>Agent Select</h2>
-    <hr>
-    <div class="video-container" [ngClass]="{'video-loaded': selectedAgent}">
-    <ng-container *ngIf="selectedAgent; else placeholder"> <!--displays content within if selectedAgent exists-->
-        <video #videoPlayer autoplay>
-            <source [src]="selectedAgent.videoUrl" type="video/mp4">
-            Your browser does not support the video tag
-        </video>
-    </ng-container>
-    <ng-template #placeholder>
-        <div class="placeholder">
-            Press the button to get started
-        </div>
-    </ng-template>
+
+    <div class="nested-flex">
+        <h2>Agent Select</h2>
+        <img class="toggle-mute-button" [src]="toggleMuteSrc" (click)="toggleMute()" width="40" height="40" alt="toggle-mute-button" aria-hidden="true">    
     </div>
+    <hr>
+
+    <div class="video-container" [ngClass]="{'video-loaded': selectedAgent}">
+        <ng-container *ngIf="selectedAgent; else placeholder"> <!--displays content within if selectedAgent exists-->
+            <video #videoPlayer autoplay [muted]="isMuted">
+                <source [src]="selectedAgent.videoUrl" type="video/mp4">
+                Your browser does not support the video tag
+            </video>
+        </ng-container>
+        <ng-template #placeholder>
+            <div class="placeholder">
+                Press the button to get started
+            </div>
+        </ng-template>
+    </div>
+
     <button class="get-your-agent-button" (click)="getRandomAgent()">
         <img src="assets/images/Get-Your-Agent-Button.png" alt="Get-Your-Agent-Button" aria-hidden="true">
     </button>

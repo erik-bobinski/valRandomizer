@@ -10,6 +10,18 @@ h2 {
     margin-bottom: 0;
 }
 
+.nested-flex {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.toggle-mute-button {
+    cursor: pointer;
+    position: relative;
+    top: 1.25rem;
+}
+
 
 hr {
     color: white;
