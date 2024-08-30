@@ -20,7 +20,13 @@
         </ng-template>
     </div>
 
-    <button class="get-your-agent-button" (click)="getRandomAgent()">
+
+    <audio #hoverAudio>
+        <source src="assets/sounds/button-hover.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <button class="get-your-agent-button" (click)="getRandomAgent()" (mouseenter)="playHoverSound(hoverAudio)">
         <img src="assets/images/Get-Your-Agent-Button.png" alt="Get-Your-Agent-Button" aria-hidden="true">
     </button>
+
 </div>

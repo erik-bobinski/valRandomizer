@@ -8,7 +8,11 @@
         Hit three enemies with thrash!
     </div>
 
-    <button class="get-your-challenge-button">
+    <audio #hoverAudio>
+        <source src="assets/sounds/button-hover.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <button class="get-your-challenge-button" (mouseenter)="playHoverSound(hoverAudio)">
         <img src="assets/images/Get-Your-Challenge-Button.png" alt="Get-Your-Challenge-Button" aria-hidden="true">
     </button>
 
