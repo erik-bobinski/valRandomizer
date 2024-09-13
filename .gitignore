@@ -42,4 +42,4 @@ testem.log
 Thumbs.db
 
 # Ignore sensitive environment variables
-key.env
+*.env
