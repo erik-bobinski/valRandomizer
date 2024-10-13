@@ -18,7 +18,7 @@ This application is not yet hosted on a domain as it is a WIP, so you'll have to
 
 - Once the code has been downloaded
 
-  `cd valRandomizer-directory`
+  `cd your-installation-directory`
 
 - Install the depencies
 
