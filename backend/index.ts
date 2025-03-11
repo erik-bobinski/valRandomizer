@@ -4,6 +4,7 @@ import http from 'http';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
+// load environment variables
 dotenv.config();
 
 // init express app
