@@ -1,42 +1,43 @@
-import express, { Request, Response } from 'express'; // import types
-import axios from 'axios';
-import cors from 'cors';
-import dotenv from 'dotenv';
+import OpenAI from "openai";
+import express from "express";
+import cors from "cors";
 
-dotenv.config(); // load environment variables
-
+// init express app
 const app = express();
+app.use(express.json);
 app.use(cors());
-app.use(express.json());
 
-const PORT = process.env['PORT'] || 3001;
-
-app.post('/api/challenge', async (req: Request, res: Response) => {
-  try {
-    const apiKey = process.env['OPENAI_API_KEY']; // load api key from .env file
-    const agentName = req.body.agent; // get agent name from the request body
-
-    // example api call to OpenAI (replace this with the actual api you're using)
-    const response = await axios.post(
-      'https://api.openai.com/v1/completions',
-      {
-        prompt: `Generate a challenge for the agent ${agentName}`,
-        max_tokens: 100,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${apiKey}`,
-        },
-      }
-    );
-
-    res.json({ challenge: response.data.choices[0].text });
-  } catch (error) {
-    console.error('Error generating challenge:', error);
-    res.status(500).json({ error: 'Error generating challenge' });
-  }
+// create openai api client
+const openai = new OpenAI({
+  apiKey: process.env['OPENAI_API_KEY'],
 });
 
-app.listen(PORT, () => {
-  console.log(`Backend server is running on ${PORT}`);
+// attempt to post response to backend server, else err
+app.post("/api/generate", async (req, res) => {
+    try {
+        const { prompt } = req.body; 
+
+        const completion = await openai.chat.completions.create({
+            model: "gpt-4o-mini",
+            messages: [
+              { role: "system", content: "You are a helpful assistant." },
+              {
+                role: "user",
+                content:
+                  "Give me a challenge to complete in Valorant for the character Gekko.",
+              },
+            ],
+            store: true,
+          });
+          
+          res.json({response: completion.choices[0].message.content});
+    } catch (error) {
+        const err = error as Error
+        console.error("Error fetching OpenAI respone: ", err.message);
+        res.status(500).json({ error: err.message });
+    }
 });
+
+app.listen(3000, () => {
+    console.log("Server runniing on http://localhost:3000");
+})
