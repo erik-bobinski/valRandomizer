@@ -25,7 +25,7 @@ hr {
     display: flex;
     text-align: center;
     align-items: center;
-    justify-content: center;    
+    justify-content: center;
     min-height: 15vh;
     width: 41.5vw;
     font-size: calc(1vw + 1vh);

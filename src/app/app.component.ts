@@ -5,13 +5,17 @@ import { AgentGenerationComponent } from './agent-generation/agent-generation.co
 import { ChallengeGenerationComponent } from './challenge-generation/challenge-generation.component';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, HeaderComponent, AgentGenerationComponent, ChallengeGenerationComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
-  
+    selector: 'app-root',
+    standalone: true,
+    imports: [
+        RouterOutlet,
+        HeaderComponent,
+        AgentGenerationComponent,
+        ChallengeGenerationComponent,
+    ],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.css',
 })
 export class AppComponent {
-  title = 'valRandomizer';
+    title = 'valRandomizer';
 }

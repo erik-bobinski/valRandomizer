@@ -1,22 +1,25 @@
 <div class="flex-container">
-
     <h2>Get Your Challenge</h2>
 
-    <hr>
+    <hr />
 
     <div class="challenge-output">
-        {{challenge || "Get an agent, then get a challenge."}}
+        {{ challenge || 'Get an agent, then get a challenge.' }}
     </div>
 
     <audio #hoverAudio>
-        <source src="assets/sounds/button-hover.mp3" type="audio/mpeg">
+        <source src="assets/sounds/button-hover.mp3" type="audio/mpeg" />
         Your browser does not support the audio element.
     </audio>
-    <button class="get-your-challenge-button"
-    (click)="generateChallenge()"
-    (mouseenter)="playHoverSound(hoverAudio)">
-        <img src="assets/images/Get-Your-Challenge-Button.png" alt="Get-Your-Challenge-Button" aria-hidden="true">
+    <button
+        class="get-your-challenge-button"
+        (click)="generateChallenge()"
+        (mouseenter)="playHoverSound(hoverAudio)"
+    >
+        <img
+            src="assets/images/Get-Your-Challenge-Button.png"
+            alt="Get-Your-Challenge-Button"
+            aria-hidden="true"
+        />
     </button>
-
 </div>
-

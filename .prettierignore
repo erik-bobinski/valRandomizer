@@ -1,0 +1,5 @@
+node_modules
+.angular
+dist
+coverage
+package-lock.json

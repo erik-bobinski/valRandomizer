@@ -4,87 +4,86 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
-  selector: 'app-agent-generation',
-  standalone: true,
-  imports: [CommonModule, HttpClientModule],
-  templateUrl: './agent-generation.component.html',
-  styleUrl: './agent-generation.component.css',
+    selector: 'app-agent-generation',
+    standalone: true,
+    imports: [CommonModule, HttpClientModule],
+    templateUrl: './agent-generation.component.html',
+    styleUrl: './agent-generation.component.css',
 })
 export class AgentGenerationComponent {
-  @ViewChild('videoPlayer') videoPlayer:
-    | ElementRef<HTMLVideoElement>
-    | undefined;
+    @ViewChild('videoPlayer') videoPlayer: ElementRef<HTMLVideoElement> | undefined;
 
-  // holds current agent and respective video src path
-  selectedAgent: { name: string; videoUrl: string } | null;
+    // holds current agent and respective video src path
+    selectedAgent: { name: string; videoUrl: string } | null;
 
-  constructor(private agentService: AgentService, private http: HttpClient) {
-    this.selectedAgent = null;
-    this.toggleMuteSrc = this.unmuted;
-  }
-
-  // for toggleMute()
-  toggleMuteSrc: string; // holds src path to respective image
-  unmuted = 'assets/images/audioOn.svg';
-  muted = 'assets/images/audioOff.svg';
-  isMuted: boolean = false; // video is initialized to unmuted
-
-  // for playHoverSound()
-  private isFirstInteraction = true;
-
-  getRandomAgent(): void {
-    this.selectedAgent = this.agentService.getRandomAgent();
-    if (this.selectedAgent) {
-      // send selected agent to the backend
-      this.http
-        .post('http://localhost:3001/api/selected-agent', {
-          agent: this.selectedAgent.name,
-        })
-        .subscribe({
-          next: () =>
-            console.log(
-              `Agent: \'${this.selectedAgent?.name}\' sent to backend`
-            ),
-          error: (err) =>
-            console.error(
-              "Error sending agent: '${this.selectedAgent?.name}' to backend",
-              err
-            ),
-        });
+    constructor(
+        private agentService: AgentService,
+        private http: HttpClient
+    ) {
+        this.selectedAgent = null;
+        this.toggleMuteSrc = this.unmuted;
     }
 
-    setTimeout(() => {
-      if (this.videoPlayer) {
-        this.videoPlayer.nativeElement.load(); // reload video
-        this.videoPlayer.nativeElement.play(); // play video again
-      }
-    }, 0);
-  }
+    // for toggleMute()
+    toggleMuteSrc: string; // holds src path to respective image
+    unmuted = 'assets/images/audioOn.svg';
+    muted = 'assets/images/audioOff.svg';
+    isMuted: boolean = false; // video is initialized to unmuted
 
-  toggleMute(): void {
-    this.isMuted = !this.isMuted; // toggle muted state
+    // for playHoverSound()
+    private isFirstInteraction = true;
 
-    if (this.isMuted == true) {
-      this.toggleMuteSrc = this.muted; // load muted img path
-    } else if (this.isMuted == false) {
-      this.toggleMuteSrc = this.unmuted; // load unmuted img path
-    } else {
-      console.log('toggleMute() logic error occurred');
+    getRandomAgent(): void {
+        this.selectedAgent = this.agentService.getRandomAgent();
+        if (this.selectedAgent) {
+            // send selected agent to the backend
+            this.http
+                .post('http://localhost:3001/api/selected-agent', {
+                    agent: this.selectedAgent.name,
+                })
+                .subscribe({
+                    next: () =>
+                        console.log(`Agent: \'${this.selectedAgent?.name}\' sent to backend`),
+                    error: err =>
+                        console.error(
+                            "Error sending agent: '${this.selectedAgent?.name}' to backend",
+                            err
+                        ),
+                });
+        }
+
+        setTimeout(() => {
+            if (this.videoPlayer) {
+                this.videoPlayer.nativeElement.load(); // reload video
+                this.videoPlayer.nativeElement.play(); // play video again
+            }
+        }, 0);
     }
-  }
 
-  playHoverSound(audioElement: HTMLAudioElement) {
-    if (this.isFirstInteraction) {
-      // play audio silently on first interaction to enable hover audio
-      audioElement.volume = 0;
-      audioElement.play().then(() => {
-        audioElement.pause();
-        audioElement.currentTime = 0;
-        audioElement.volume = 1; // restore volume for subsequent plays
-      });
-      this.isFirstInteraction = false;
+    toggleMute(): void {
+        this.isMuted = !this.isMuted; // toggle muted state
+
+        if (this.isMuted == true) {
+            this.toggleMuteSrc = this.muted; // load muted img path
+        } else if (this.isMuted == false) {
+            this.toggleMuteSrc = this.unmuted; // load unmuted img path
+        } else {
+            console.log('toggleMute() logic error occurred');
+        }
     }
 
-    audioElement.play();
-  }
+    playHoverSound(audioElement: HTMLAudioElement) {
+        if (this.isFirstInteraction) {
+            // play audio silently on first interaction to enable hover audio
+            audioElement.volume = 0;
+            audioElement.play().then(() => {
+                audioElement.pause();
+                audioElement.currentTime = 0;
+                audioElement.volume = 1; // restore volume for subsequent plays
+            });
+            this.isFirstInteraction = false;
+        }
+
+        audioElement.play();
+    }
 }

@@ -8,9 +8,11 @@
 .title {
     position: absolute;
     color: #ff4655;
-    font-size: 2rem; 
+    font-size: 2rem;
     left: 50%; /* moves title's left edge to center of header*/
-    transform: translateX(-50%); /* shifts title left by 50% of its own width, effectively centering the element on the header */
+    transform: translateX(
+        -50%
+    ); /* shifts title left by 50% of its own width, effectively centering the element on the header */
 }
 
 .links {
@@ -22,7 +24,6 @@
 .links a {
     text-decoration: none;
     color: white;
-
 }
 
 .links a:hover {
@@ -50,18 +51,18 @@ hr {
 
 @media (max-width: 875px) {
     .flex-container {
-      flex-direction: column;
-      align-items: center;
+        flex-direction: column;
+        align-items: center;
     }
-    
-    .title {    
+
+    .title {
         text-align: center;
         margin-bottom: 10vh;
     }
-  
+
     .links {
-      justify-content: center;
-      gap: 10px;
-      margin-top: 5vh;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 5vh;
     }
 }

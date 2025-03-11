@@ -1,32 +1,44 @@
 <div class="flex-container">
-
     <div class="nested-flex">
         <h2>Agent Select</h2>
-        <img class="toggle-mute-button" [src]="toggleMuteSrc" (click)="toggleMute()" width="40" height="40" alt="toggle-mute-button" aria-hidden="true">    
+        <img
+            class="toggle-mute-button"
+            [src]="toggleMuteSrc"
+            (click)="toggleMute()"
+            width="40"
+            height="40"
+            alt="toggle-mute-button"
+            aria-hidden="true"
+        />
     </div>
-    <hr>
+    <hr />
 
-    <div class="video-container" [ngClass]="{'video-loaded': selectedAgent}">
-        <ng-container *ngIf="selectedAgent; else placeholder"> <!--displays content within if selectedAgent exists-->
+    <div class="video-container" [ngClass]="{ 'video-loaded': selectedAgent }">
+        <ng-container *ngIf="selectedAgent; else placeholder">
+            <!--displays content within if selectedAgent exists-->
             <video #videoPlayer autoplay [muted]="isMuted">
-                <source [src]="selectedAgent.videoUrl" type="video/mp4">
+                <source [src]="selectedAgent.videoUrl" type="video/mp4" />
                 Your browser does not support the video tag
             </video>
         </ng-container>
         <ng-template #placeholder>
-            <div class="placeholder">
-                Press the button to get started
-            </div>
+            <div class="placeholder">Press the button to get started</div>
         </ng-template>
     </div>
 
-
     <audio #hoverAudio>
-        <source src="assets/sounds/button-hover.mp3" type="audio/mpeg">
+        <source src="assets/sounds/button-hover.mp3" type="audio/mpeg" />
         Your browser does not support the audio element.
     </audio>
-    <button class="get-your-agent-button" (click)="getRandomAgent()" (mouseenter)="playHoverSound(hoverAudio)">
-        <img src="assets/images/Get-Your-Agent-Button.png" alt="Get-Your-Agent-Button" aria-hidden="true">
+    <button
+        class="get-your-agent-button"
+        (click)="getRandomAgent()"
+        (mouseenter)="playHoverSound(hoverAudio)"
+    >
+        <img
+            src="assets/images/Get-Your-Agent-Button.png"
+            alt="Get-Your-Agent-Button"
+            aria-hidden="true"
+        />
     </button>
-
 </div>

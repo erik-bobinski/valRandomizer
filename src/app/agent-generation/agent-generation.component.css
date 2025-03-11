@@ -22,7 +22,6 @@ h2 {
     top: 1.25rem;
 }
 
-
 hr {
     color: white;
     width: 60vw;
@@ -65,4 +64,3 @@ hr {
 .get-your-agent-button:hover {
     filter: brightness(1.2);
 }
-
