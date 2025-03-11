@@ -1,6 +1,5 @@
 import OpenAI from 'openai';
 import express from 'express';
-import http from 'http';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
@@ -93,10 +92,6 @@ app.get('/api/app-status', (req, res) => {
     });
 });
 
-// create http server
-const server = http.createServer(app);
-
-// run http server on port
-server.listen(3001, () => {
+app.listen(3001, () => {
     console.log('Server running on http://localhost:3001');
 });
