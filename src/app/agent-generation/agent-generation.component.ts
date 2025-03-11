@@ -1,22 +1,29 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { AgentService } from '../agent.service';
 import { CommonModule } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-agent-generation',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, HttpClientModule],
   templateUrl: './agent-generation.component.html',
-  styleUrl: './agent-generation.component.css'
+  styleUrl: './agent-generation.component.css',
 })
 export class AgentGenerationComponent {
+  @ViewChild('videoPlayer') videoPlayer:
+    | ElementRef<HTMLVideoElement>
+    | undefined;
 
-  @ViewChild('videoPlayer') videoPlayer: ElementRef<HTMLVideoElement> | undefined;
-  
   // holds current agent and respective video src path
-  selectedAgent: { name: string, videoUrl: string } | null;
+  selectedAgent: { name: string; videoUrl: string } | null;
 
-  // for toggleMute() 
+  constructor(private agentService: AgentService, private http: HttpClient) {
+    this.selectedAgent = null;
+    this.toggleMuteSrc = this.unmuted;
+  }
+
+  // for toggleMute()
   toggleMuteSrc: string; // holds src path to respective image
   unmuted = 'assets/images/audioOn.svg';
   muted = 'assets/images/audioOff.svg';
@@ -25,16 +32,28 @@ export class AgentGenerationComponent {
   // for playHoverSound()
   private isFirstInteraction = true;
 
-  constructor(private agentService: AgentService) {
-    this.selectedAgent = null;
-    this.toggleMuteSrc = this.unmuted;
-  }
-
   getRandomAgent(): void {
-
     this.selectedAgent = this.agentService.getRandomAgent();
+    if (this.selectedAgent) {
+      // send selected agent to the backend
+      this.http
+        .post('http://localhost:3001/api/selected-agent', {
+          agent: this.selectedAgent.name,
+        })
+        .subscribe({
+          next: () =>
+            console.log(
+              `Agent: \'${this.selectedAgent?.name}\' sent to backend`
+            ),
+          error: (err) =>
+            console.error(
+              "Error sending agent: '${this.selectedAgent?.name}' to backend",
+              err
+            ),
+        });
+    }
 
-    setTimeout( () => {
+    setTimeout(() => {
       if (this.videoPlayer) {
         this.videoPlayer.nativeElement.load(); // reload video
         this.videoPlayer.nativeElement.play(); // play video again
@@ -45,14 +64,12 @@ export class AgentGenerationComponent {
   toggleMute(): void {
     this.isMuted = !this.isMuted; // toggle muted state
 
-    if (this.isMuted == true) { 
+    if (this.isMuted == true) {
       this.toggleMuteSrc = this.muted; // load muted img path
-    }
-    else if(this.isMuted == false) { 
+    } else if (this.isMuted == false) {
       this.toggleMuteSrc = this.unmuted; // load unmuted img path
-    }
-    else {
-      console.log("toggleMute() logic error occurred");
+    } else {
+      console.log('toggleMute() logic error occurred');
     }
   }
 
@@ -70,5 +87,4 @@ export class AgentGenerationComponent {
 
     audioElement.play();
   }
-
 }

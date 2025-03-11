@@ -1,17 +1,34 @@
 import { Component } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-challenge-generation',
   standalone: true,
-  imports: [],
+  imports: [HttpClientModule],
   templateUrl: './challenge-generation.component.html',
-  styleUrl: './challenge-generation.component.css'
+  styleUrl: './challenge-generation.component.css',
 })
 export class ChallengeGenerationComponent {
+  challenge: string | null = null;
 
-   // for playHoverSound()
-   private isFirstInteraction = true;
+  constructor(private http: HttpClient) {}
 
+  generateChallenge(): void {
+    this.http
+      .post<{ response: string }>(
+        'http://localhost:3001/api/generate-challenge',
+        {}
+      )
+      .subscribe({
+        next: (data) => {
+          this.challenge = data.response;
+          console.log('Challenge received: ', this.challenge);
+        },
+        error: (err) => console.error('Error generating challenge: ', err),
+      });
+  }
+
+  private isFirstInteraction = true;
   playHoverSound(audioElement: HTMLAudioElement) {
     if (this.isFirstInteraction) {
       // play audio silently on first interaction to enable hover audio
@@ -26,5 +43,4 @@ export class ChallengeGenerationComponent {
 
     audioElement.play();
   }
-
 }
