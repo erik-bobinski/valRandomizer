@@ -9,14 +9,13 @@ dotenv.config();
 // init express app
 const app = express();
 app.use(express.json());
-app.use(cors());
-// app.use(
-//   cors({
-//     origin: 'localhost:4200',
-//     methods: ['GET', 'POST'],
-//     allowedHeaders: ['Content-Type', 'Authorization'],
-//   })
-// );
+app.use(
+  cors({
+    origin: 'localhost:4200',
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  })
+);
 
 // create openai api client
 const openai = new OpenAI({
