@@ -6,15 +6,17 @@ Randomized agent selection and generation of challenges to complete in-game, des
 
 ## Setup The Latest Build Locally
 
-This application is not yet hosted on a domain as it is a WIP, so you'll have to download and build from the source code on your machine. Additionally, this app requires you have your own OpenAI API key which you can get [here](https://platform.openai.com/api-keys). Just putting $5 into your OpenAI account will last you countless hours of use time.
+If you're not experienced in programming, this guide is verbose to help you get the app all set up. This application is not yet hosted on a domain as it is a WIP, so you'll have to download and build from the source code on your machine. Additionally, this app requires you to have your own OpenAI API key which you can get [here](https://platform.openai.com/api-keys) — ensure you save the API key as an environment variable on your machine named `OPENAI_API_KEY` in order for the application to use it! Inserting as little as $1 USD will last you hours of use time!
 
-- Install node if you don't have it
+- Install the following three dev tools in the order listed if you dont have them, or the subsequent steps won't work:
 
-    `Navigate to: https://nodejs.org/en/download`
+    [Git](https://git-scm.com/downloads)
+  
+    [Node.js](https://nodejs.org/en/download)
+  
+    Install Angular in your terminal: `npm install -g @angular/cli`
 
-- Install Angular if you don't have it
-
-    `npm install -g @angular/cli`
+In your terminal, navigate to where you want to install the app on your machine, then follow the remaining steps:
 
 - Clone this repo
 
