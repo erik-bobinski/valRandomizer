@@ -2,7 +2,11 @@
 
 Randomized agent selection and generation of challenges to complete in-game, designed to spice up your VALORANT experience.
 
-![image](src/assets/images/AgentSelectPlaceholder.png)
+Built with Angular and Express + OpenAI API. 
+
+## Here's a demo link:
+
+[![valRandomizer Demo](https://img.youtube.com/vi/TdFNGlYvRRo/maxresdefault.jpg)](https://www.youtube.com/watch?v=TdFNGlYvRRo)
 
 ## Setup The Latest Build Locally
 
